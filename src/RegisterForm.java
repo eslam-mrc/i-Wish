@@ -18,6 +18,8 @@ public class RegisterForm extends javax.swing.JFrame {
     Streams stream;
     int mouserpx ;
     int mouserpy ;
+    public int regCredit;
+    public boolean flagValidNumber = false;
 
     /**
      * Creates new form RegisterForm
@@ -284,19 +286,31 @@ public class RegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelloginMouseClicked
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        UserDTO regObj = new UserDTO();
+UserDTO regObj = new UserDTO();
         if ((!txtUsernameReg.getText().trim().equalsIgnoreCase("")) //checks that non of the text fields is empty when the button is pushed
-            && (!txtPasswordReg.getText().trim().equalsIgnoreCase(""))
-            && (!txtEmailReg.getText().trim().equalsIgnoreCase(""))
-            && (!txtCreditReg.getText().trim().equalsIgnoreCase(""))
-            && (txtEmailReg.getText().contains("@")) ) {
-            regObj.tag = "Register";
+                && (!txtPasswordReg.getText().trim().equalsIgnoreCase(""))
+                && (!txtEmailReg.getText().trim().equalsIgnoreCase(""))
+                && (!txtCreditReg.getText().trim().equalsIgnoreCase(""))
+                && (txtEmailReg.getText().contains("@"))) {
+            try {
+                regCredit = Integer.valueOf(txtCreditReg.getText());
+            } catch (NumberFormatException e) {
+                txtCreditReg.setText("");
+                flagValidNumber = true;
+                
+            }
+            if(flagValidNumber==true){
+                JOptionPane.showMessageDialog(null, "Please enter only numbers in the credit field");
+                flagValidNumber = false;
+            }
+            else{
+                regObj.tag = "Register";
             regObj.username = txtUsernameReg.getText();
             regObj.password = txtPasswordReg.getText();
+
+            regObj.credit = regCredit;
             regObj.email = txtEmailReg.getText();
-            regObj.credit = txtCreditReg.getText();
             Streams.myUsername = txtUsernameReg.getText();
-            //System.out.println(Streams.myUsername); //this is just a check
             String data = new Gson().toJson(regObj);
             stream.pos.println(data);
             //System.out.println(data); //this is just a check
@@ -317,30 +331,83 @@ public class RegisterForm extends javax.swing.JFrame {
                         home.setLocationRelativeTo(null);
                         home.setDefaultCloseOperation(login.EXIT_ON_CLOSE);
                         dispose();
-                        //                            login log = new login();
-                        //                            log.setVisible(true);
-                        //                            log.pack();
-                        //                            log.setLocationRelativeTo(null);
-                        //                            log.setDefaultCloseOperation(RegisterForm.EXIT_ON_CLOSE);
-                        //                            dispose();
+
                     }
                     Streams.flagRegCompleted = true;
 
                 }
             });
             th.start();
+            }
+            
         }
-        else if (txtEmailReg.getText().contains("@") == false){
+        else if (txtEmailReg.getText().contains("@") == false) {
             Object[] options = {"OK"};
             JOptionPane.showOptionDialog(this,
-            "You need to enter a correct e-mail","Incorrect email",
-            JOptionPane.PLAIN_MESSAGE,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            options,
-            options[0]);
+                    "You need to enter a correct e-mail", "Incorrect inputs",
+                    JOptionPane.PLAIN_MESSAGE,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
         }
-        
+//        UserDTO regObj = new UserDTO();
+//        if ((!txtUsernameReg.getText().trim().equalsIgnoreCase("")) //checks that non of the text fields is empty when the button is pushed
+//            && (!txtPasswordReg.getText().trim().equalsIgnoreCase(""))
+//            && (!txtEmailReg.getText().trim().equalsIgnoreCase(""))
+//            && (!txtCreditReg.getText().trim().equalsIgnoreCase(""))
+//            && (txtEmailReg.getText().contains("@")) ) {
+//            regObj.tag = "Register";
+//            regObj.username = txtUsernameReg.getText();
+//            regObj.password = txtPasswordReg.getText();
+//            regObj.email = txtEmailReg.getText();
+//            regObj.credit = txtCreditReg.getText();
+//            Streams.myUsername = txtUsernameReg.getText();
+//            //System.out.println(Streams.myUsername); //this is just a check
+//            String data = new Gson().toJson(regObj);
+//            stream.pos.println(data);
+//            //System.out.println(data); //this is just a check
+//            Thread th = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//                    try {
+//                        Thread.sleep(200);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(RegisterForm.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    System.out.println(Streams.flagRegCompleted);
+//                    if (Streams.flagRegCompleted == true) { //if the registeration process go well, this switches the window to the login window
+//                        Home home = new Home(login.mainlogin.stream);
+//                        home.setVisible(true);
+//                        home.pack();
+//                        home.setLocationRelativeTo(null);
+//                        home.setDefaultCloseOperation(login.EXIT_ON_CLOSE);
+//                        dispose();
+//                        //                            login log = new login();
+//                        //                            log.setVisible(true);
+//                        //                            log.pack();
+//                        //                            log.setLocationRelativeTo(null);
+//                        //                            log.setDefaultCloseOperation(RegisterForm.EXIT_ON_CLOSE);
+//                        //                            dispose();
+//                    }
+//                    Streams.flagRegCompleted = true;
+//
+//                }
+//            });
+//            th.start();
+//        }
+//        else if (txtEmailReg.getText().contains("@") == false){
+//            Object[] options = {"OK"};
+//            JOptionPane.showOptionDialog(this,
+//            "You need to enter a correct e-mail","Incorrect email",
+//            JOptionPane.PLAIN_MESSAGE,
+//            JOptionPane.QUESTION_MESSAGE,
+//            null,
+//            options,
+//            options[0]);
+//        }
+//        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void txtUsernameRegMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameRegMouseClicked

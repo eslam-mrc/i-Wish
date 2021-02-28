@@ -1,4 +1,3 @@
-
 import com.google.gson.Gson;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -104,6 +103,15 @@ public class Streams {
 
                                     case "ServerReplyRemoveFriend":
                                         System.out.println("Server Replied Remove Friend!");
+                                        DefaultTableModel removemodel = (DefaultTableModel) myfriends.friendsTable.getModel();
+                                        removemodel.setRowCount(0);
+                                        Object rmvrowData[] = new Object[1];
+ 
+                                        for (int i = 0; i < data.FriendsArr.size(); i++){
+                                            rmvrowData[0] = data.FriendsArr.get(i);
+                                            //System.out.println(data.FriendsArr.get(i));
+                                            removemodel.addRow(rmvrowData);
+                                        }
                                         //JOptionPane.showMessageDialog(null,"Your friend has been deleted!","Remove Friend",JOptionPane.WARNING_MESSAGE);
                                         //myfriends.friendsTable.getModel().fireTableDataChanged();
                                         break;
@@ -355,7 +363,7 @@ class UserDTO {
     public String username;
     public String password;
     public String email;
-    public String credit;
+    public int credit;
     //SARA
     public ArrayList FriendsArr;
     public ArrayList AllUsersArr;

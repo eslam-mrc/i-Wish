@@ -145,7 +145,7 @@ public class Home extends javax.swing.JFrame {
         recharge.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         recharge.setForeground(new java.awt.Color(255, 255, 255));
         recharge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-prepaid-recharge-20 (1).png"))); // NOI18N
-        recharge.setText("Recharge");
+        recharge.setText("My Wallet");
         recharge.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rechargeMouseClicked(evt);

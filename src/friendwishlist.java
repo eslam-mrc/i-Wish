@@ -1,4 +1,3 @@
-
 import com.google.gson.Gson;
 import java.awt.Color;
 import static java.lang.Integer.parseInt;
@@ -245,7 +244,7 @@ public class friendwishlist extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelclose1MouseClicked
 
     private void contributeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contributeActionPerformed
-        if (item_id.getText().isEmpty() && item_amout.getText().isEmpty()) {
+       try{ if (item_id.getText().isEmpty() && item_amout.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please Enter Product ID and Amount");
 
         } else {   
@@ -295,6 +294,10 @@ public class friendwishlist extends javax.swing.JFrame {
         stream.pos.println(Con_data);      
         System.out.println("baad");
       } };
+        }}
+       catch (NumberFormatException e) {
+            item_amout.setText("");
+            JOptionPane.showMessageDialog(null, "Enter Number");
         }
     }//GEN-LAST:event_contributeActionPerformed
 

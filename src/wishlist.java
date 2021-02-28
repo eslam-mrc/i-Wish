@@ -23,6 +23,7 @@ public class wishlist extends javax.swing.JInternalFrame {
     public wishlist(Streams stream) {
         initComponents();
         this.stream = stream;
+        IdDel.setEditable(false);
         System.out.println("wishlist stream is "+stream);
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui =(BasicInternalFrameUI)this.getUI();
@@ -52,6 +53,11 @@ public class wishlist extends javax.swing.JInternalFrame {
                 "username", "item", "CONTRIBUTOR_NAME", "amount"
             }
         ));
+        wishtab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wishtabMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(wishtab);
 
         InsertBtn.setBackground(new java.awt.Color(0, 69, 129));
@@ -187,6 +193,12 @@ public class wishlist extends javax.swing.JInternalFrame {
     private void IdDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdDelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IdDelActionPerformed
+
+    private void wishtabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wishtabMouseClicked
+        int index = wishtab.getSelectedRow(); /// el row aly ana wa2fa 3ndo (index,0)
+        String name = wishtab.getValueAt(index, 0).toString();
+        IdDel.setText(name);
+    }//GEN-LAST:event_wishtabMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

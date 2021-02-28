@@ -92,7 +92,7 @@ public class myfriends extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(friendsTable);
 
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Select your friend's user name");
+        jTextField1.setText("Enter Your Friend's UserName");
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField1FocusGained(evt);
@@ -182,6 +182,7 @@ public class myfriends extends javax.swing.JInternalFrame {
                                     
                  int index =friendsTable.getSelectedRow(); /// el row aly ana wa2fa 3ndo (index,0)
                  String name = friendsTable.getValueAt(index, 0).toString();
+                 jTextField1.setText(name);
                  System.out.println(name);
                  //RADWA
                  UserDTO regFrienWishList = new UserDTO(); 

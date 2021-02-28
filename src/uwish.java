@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import static java.lang.Integer.parseInt;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /*
@@ -98,7 +99,7 @@ Streams stream;
     }//GEN-LAST:event_moneyamountActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("d5lt 3shan a5od elflos mn el box");
+        try{System.out.println("d5lt 3shan a5od elflos mn el box");
         int rechargeAmt = parseInt(moneyamount.getText());   
        System.out.println(rechargeAmt);
        UserDTO regRecharge = new UserDTO();       
@@ -107,8 +108,15 @@ Streams stream;
         regRecharge.recharge_Amount=rechargeAmt;
         String Con_data = new Gson().toJson(regRecharge);
         System.out.println(stream);
-        stream.pos.println(Con_data);  
-        
+        stream.pos.println(Con_data);  }
+        catch (NumberFormatException e) {
+//prompt some error or alert
+//reset text
+
+            moneyamount.setText("");
+            JOptionPane.showMessageDialog(null, "Enter Number");
+        }
+   
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
