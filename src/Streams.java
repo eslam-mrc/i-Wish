@@ -1,3 +1,4 @@
+
 import com.google.gson.Gson;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Eslam
  */
+
 public class Streams {
 
     boolean flagLogin = false;
@@ -383,3 +385,4 @@ class UserDTO {
     int recharge_Amount;
     public int currCredit;
 }
+
